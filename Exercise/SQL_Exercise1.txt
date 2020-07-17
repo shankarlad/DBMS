@@ -1,0 +1,269 @@
+create database DBT_E;
+use DBT_E;
+
+1)
+Create table SEMP
+(
+EMPNO CHAR(4),
+EMPNAME CHAR(20),
+BASIC FLOAT(9,2),
+DEPTNO CHAR(2),
+DEPTHEAD CHAR(4) 
+);
+---------------------------------------------------------------------------------------
+2)
+Create table SDEPT
+(
+DEPTNO CHAR(2),
+DEPTNAME CHAR(15) 
+);
+---------------------------------------------------------------------------------------
+3)
+insert into SDEPT
+values
+(10,'Development'),
+(20,'Training');
+---------------------------------------------------------------------------------------
+4)
+insert into SEMP
+values
+('0001', 'SUNIL', 6000, '10',NULL),
+('0002', 'HIREN', 8000, '20',NULL),
+('0003', 'ALI', 4000, '10','0001'),
+('0004', 'GEORGE', 6000, NULL, '0002');
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table S
+(
+`S#` char(4),
+Sname varchar(20),
+Status int(4),
+City varchar(10)
+);
+
+insert into S
+values
+('S1','Smith',10,'London'),
+('S2','Henry',20,'Paris'),
+('S3','Jonas',30,'Athens'),
+('S4','Ross',10,'London'),
+('S5','Bruce',20,'Paris');
+
+
+create table P
+(
+`P#` char(4),
+Pname varchar(20),
+Color char(8),
+Weight float(4,2),
+City varchar(10)
+);
+
+insert into P
+values
+('P1','Screw','Red',12.20,'Athens'),
+('P2','Bolt','Black',17.50,'London'),
+('P3','Nut','Blue',17.50,'Paris'),
+('P4','Nut','Green',14.80,'Athens'),
+('P5','Cog','Red',12.20,'London'),
+('P6','Cam','Blue',19.00,'Paris');
+
+
+create table J
+(
+`J#` char(4),
+Jname varchar(20),
+City varchar(10)
+);
+
+insert into J
+values
+('J1','Punch','Paris'),
+('J2','Tape','Athens'),
+('J3','Terminal','Paris'),
+('J4','Collator','Athens'),
+('J5','Console','London'),
+('J6','Reader','Paris'),
+('J7','Sorter','London');
+
+create table SPJ
+(
+`S#` char(4),
+`P#` char(4),
+`J#` char(4),
+Qty int(4)
+);
+
+insert into SPJ
+values
+('S1','P1','J1',200),
+('S1','P1','J2',500),
+('S2','P3','J1',750),
+('S2','P4','J5',400),
+('S2','P5','J7',600),
+('S3','P3','J3',250),
+('S3','P6','J4',550),
+('S3','P6','J6',300),
+('S4','P2','J1',500),
+('S4','P6','J6',150),
+('S5','P3','J7',225),
+('S5','P5','J5',450);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+5) Display all the data from the S table.
+
+mysql> select * from S;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     10 | London |
+| S2   | Henry |     20 | Paris  |
+| S3   | Jonas |     30 | Athens |
+| S4   | Ross  |     10 | London |
+| S5   | Bruce |     20 | Paris  |
++------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+6)Display only the S# and SNAME fields from the S table. 
+
+mysql> select `s#`,Sname from S;
++------+-------+
+| s#   | Sname |
++------+-------+
+| S1   | Smith |
+| S2   | Henry |
+| S3   | Jonas |
+| S4   | Ross  |
+| S5   | Bruce |
++------+-------+
+---------------------------------------------------------------------------------------
+7)Display the PNAME and COLOR from the P table for the CITY=”London”. 
+
+mysql> select Pname,Color from P where city = 'London';
++-------+-------+
+| Pname | Color |
++-------+-------+
+| Bolt  | Black |
+| Cog   | Red   |
++-------+-------+
+---------------------------------------------------------------------------------------
+8)Display all the Suppliers from London
+
+mysql> select * from S where city = 'london';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     10 | London |
+| S4   | Ross  |     10 | London |
++------+-------+--------+--------+se
+---------------------------------------------------------------------------------------
+9)Display all the Suppliers from Paris or Athens. 
+
+mysql> select * from S where city = 'Paris' OR city = 'Athens';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Henry |     20 | Paris  |
+| S3   | Jonas |     30 | Athens |
+| S5   | Bruce |     20 | Paris  |
++------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+10)Display all the Projects in Athens. 
+
+mysql> select * from P where city = 'Athens';
++------+-------+-------+--------+--------+
+| P#   | Pname | Color | Weight | City   |
++------+-------+-------+--------+--------+
+| P1   | Screw | Red   |  12.20 | Athens |
+| P4   | Nut   | Green |  14.80 | Athens |
++------+-------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+11)Display all the Partnames with the weight between 12 and 14 (inclusive of both). 
+
+mysql> select * from P where weight >= 12 AND weight <=14;
++------+-------+-------+--------+--------+
+| P#   | Pname | Color | Weight | City   |
++------+-------+-------+--------+--------+
+| P1   | Screw | Red   |  12.20 | Athens |
+| P5   | Cog   | Red   |  12.20 | London |
++------+-------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+12)Display all the Suppliers with a Status greater than or equal to 20. 
+
+mysql> select * from S where Status >= 20;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Henry |     20 | Paris  |
+| S3   | Jonas |     30 | Athens |
+| S5   | Bruce |     20 | Paris  |
++------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+13)Display all the Suppliers except the Suppliers from London. 
+
+mysql> select * from S where city != 'London';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Henry |     20 | Paris  |
+| S3   | Jonas |     30 | Athens |
+| S5   | Bruce |     20 | Paris  |
++------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+14)Display only the Cities from where the Suppliers come from. 
+
+mysql> select city from s;
++--------+
+| city   |
++--------+
+| London |
+| Paris  |
+| Athens |
+| London |
+| Paris  |
++--------+
+---------------------------------------------------------------------------------------
+15)Assuming that the Part Weight is in GRAMS, display the same in
+   MILLIGRAMS and KILOGRAMS. 
+
+mysql> select Pname,weight/1000 "wt in KG",weight*1000 "wt in MG" from p;
++-------+----------+----------+
+| Pname | wt in KG | wt in MG |
++-------+----------+----------+
+| Screw | 0.012200 | 12200.00 |
+| Bolt  | 0.017500 | 17500.00 |
+| Nut   | 0.017500 | 17500.00 |
+| Nut   | 0.014800 | 14800.00 |
+| Cog   | 0.012200 | 12200.00 |
+| Cam   | 0.019000 | 19000.00 |
++-------+----------+----------+
+---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+Q1. Which field of the Customers table is the primary key?
+
+==>	CNUM is the primary Key in the table CUSTOMERS.
+-------------------------------------------------------------------------
+
+Q2. What is the 4th column of the Customers table?
+
+==> RATING is the fourth column of customer table.
+-------------------------------------------------------------------------
+
+Q3. What is another word for row? For column?
+
+==> For Row: tuples, entity, oppurtinity
+
+==> For Column : Attribute ,  Method
+-------------------------------------------------------------------------
+
+Q4. Why isn’t it possible to see the first five rows of a table?
+
+==> Every row in RDBMS is a file and it is  not stored in a sequentialy.
+    rows of table are scattered(fragmented) all over the DB server HD.it is 
+    always stored in a ascending order of address beacuse of this all reasons 
+    it is not possible to see first five rows of a table.
+--------------------------------------------------------------------------
