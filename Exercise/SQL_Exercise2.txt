@@ -1,0 +1,127 @@
+seleQ1. Display the Supplier table in the descending order of CITY. 
+
+mysql> select * from S
+    -> order by city desc;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Henry |     20 | Paris  |
+| S5   | Bruce |     20 | Paris  |
+| S1   | Smith |     10 | London |
+| S4   | Ross  |     10 | London |
+| S3   | Jonas |     30 | Athens |
++------+-------+--------+--------+
+
+--------------------------------------------------------------------------------------
+
+Q2. Display the Part Table in the ascending order of CITY and within the city in
+    the ascending order of Part names.
+
+mysql> select * from p
+    -> order by city,Pname;
++------+-------+-------+--------+--------+
+| P#   | Pname | Color | Weight | City   |
++------+-------+-------+--------+--------+
+| P4   | Nut   | Green |  14.80 | Athens |
+| P1   | Screw | Red   |  12.20 | Athens |
+| P2   | Bolt  | Black |  17.50 | London |
+| P5   | Cog   | Red   |  12.20 | London |
+| P6   | Cam   | Blue  |  19.00 | Paris  |
+| P3   | Nut   | Blue  |  17.50 | Paris  |
++------+-------+-------+--------+--------+ 
+
+---------------------------------------------------------------------------------------
+
+Q3. Display all the Suppliers with a status between 10 and 20. 
+
+mysql> select * from s
+    -> where status between 10 and 20;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     10 | London |
+| S2   | Henry |     20 | Paris  |
+| S4   | Ross  |     10 | London |
+| S5   | Bruce |     20 | Paris  |
++------+-------+--------+--------+
+
+--------------------------------------------------------------------------------------
+ 
+Q4. Display all the Parts and their Weight, which are not in the range of 10 and 15.
+
+mysql> select Pname "Parts",weight from P
+    -> where weight not between 10 and 15;
++-------+--------+
+| Parts | weight |
++-------+--------+
+| Bolt  |  17.50 |
+| Nut   |  17.50 |
+| Cam   |  19.00 |
++-------+--------+
+
+---------------------------------------------------------------------------------------
+
+Q5. Display all the Part names starting with the letter ‘S’. 
+
+mysql> select Pname as 'Part Name' from P
+    -> where Pname like 'S%';
++-----------+
+| Part Name |
++-----------+
+| Screw     |
++-----------+
+
+---------------------------------------------------------------------------------------
+
+Q6. Display all the Suppliers, belonging to cities starting with the letter ‘L’. 
+
+mysql> select * from S
+    -> where city like 'L%';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith |     10 | London |
+| S4   | Ross  |     10 | London |
++------+-------+--------+--------+
+---------------------------------------------------------------------------------------
+
+Q7. Display all the jobs, with the third letter in JNAME as ‘n’. 
+
+mysql> select * from J
+    -> where jname like '__n%';
++------+---------+--------+
+| J#   | Jname   | City   |
++------+---------+--------+
+| J1   | Punch   | Paris  |
+| J5   | Console | London |
++------+---------+--------+
+----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
