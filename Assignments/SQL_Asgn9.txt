@@ -78,18 +78,17 @@ mysql>  select customers.Cname,salespeople.Sname,salespeople.Comm * 100 'Rate of
 mysql> select orders.Onum,orders.Amt * salespeople.Comm 'Commision'
     -> from orders,customers,salespeople
     -> where salespeople.snum = customers.snum and customers.snum = orders.snum and customers.rating > 100
+    -> group by orders.Onum
     -> order by 1;
 +------+-----------+
 | Onum | Commision |
 +------+-----------+
 | 3001 |      2.80 |
 | 3005 |    670.86 |
-| 3005 |    670.86 |
 | 3006 |    164.72 |
-| 3007 |      9.85 |
 | 3007 |      9.85 |
 | 3009 |    171.32 |
 | 3010 |    170.29 |
-| 3010 |    170.29 |
 +------+-----------+
+
 ----------------------------------------------------------------------------------------------
