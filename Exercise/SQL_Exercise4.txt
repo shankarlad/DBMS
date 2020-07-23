@@ -70,10 +70,10 @@ mysql> select `P#`,avg(Qty) from spj
 7. Display the maximum Quantity sold for each part, provided the maximum Quantity
    is greater than 800.
 
-mysql> select `P#`,max(Qty) from spj
-    -> where Qty > 800
+mysql> select qty from spj
+    -> where qty = (select max(qty) from spj)
     -> group by `p#`
-    -> order by 1;
+    -> having max(qty) > 800;
 ----------------------------------------------------------------------------------------------
 
 8. Display the Status and the count of Suppliers with that Status.
