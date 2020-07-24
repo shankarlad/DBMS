@@ -12,7 +12,7 @@ mysql> select a.sname,b.sname,a.city
 | Motika | Peel  | London |
 +--------+-------+--------+
 ----------------------------------------------------------------------------------------------
-2) Write a query that produces the names and cities of all customers with the same
+Q2. Write a query that produces the names and cities of all customers with the same
    rating as Hoffman.
 
 mysql> select Cname,City from customers
