@@ -1,0 +1,52 @@
+Q1.Assume there is a table called Multicust, with all of the same column definitions
+   as Salespeople. Write a command that inserts all salespeople with more than one
+   customer into this table.
+
+mysql> create table Multicust
+    -> as
+    -> select * from Salespeople
+    -> where snum in
+    -> (select snum from customers
+    -> group by snum
+    -> having count(snum) > 1);
+
+mysql> select * from Multicust;
++------+--------+--------+------+
+| Snum | Sname  | City   | Comm |
++------+--------+--------+------+
+| 1001 | Peel   | London | 0.12 |
+| 1004 | Motika | London | 0.11 |
++------+--------+--------+------+
+--------------------------------------------------------------------------------------------------
+
+Q2. Write a command that deletes all customers with no current orders.
+
+DELETE from customers
+WHERE cnum=ANY
+(SELECT cnum
+FROM orders
+WHERE cnum NOT IN(SELECT cnum
+FROM customers));
+--------------------------------------------------------------------------------------------------
+Q3. Write a command that increases by twenty percent the commissions of all  
+    salespeople with total orders above Rs. 3,000.
+
+mysql> UPDATE salespeople
+    -> SET comm=comm*1.20
+    -> WHERE snum IN
+    -> (SELECT snum
+    -> FROM orders
+    -> WHERE amt>300);
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.14 |
+| 1002 | Serres  | San Jose  | 0.16 |
+| 1004 | Motika  | London    | 0.13 |
+| 1007 | Rifkin  | Barcelona | 0.18 |
+| 1003 | Axelrod | New York  | 0.12 |
+| 1100 | Blanco  | San Jose  | NULL |
++------+---------+-----------+------+
+---------------------------------------------------------------------------------------------------
